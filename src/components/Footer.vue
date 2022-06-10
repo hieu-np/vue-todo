@@ -3,19 +3,36 @@
     <p>
       Copyright &copy; 2021
     </p>
-    <a href="/about">About</a>
+    <router-link 
+    v-show="homePage" 
+    class="link-black" 
+    to="/about">About</router-link>
+    <router-link 
+    v-show="!homePage" 
+    class="link-black" 
+    to="/">Home Page</router-link>
   </footer>
 </template>
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  computed: {
+    homePage() {
+      if (this.$route.path === "/about") {
+        return false;
+      } else {
+        return true;
+      }
+    },
+  },
 }
 </script>
 
 <style scoped>
-  a{
-    color: #333;
+  .link-black{
+    color: #ff6652;
+    text-decoration: none
   }
   footer{
     margin-top: 30px;

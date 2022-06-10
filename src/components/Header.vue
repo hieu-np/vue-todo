@@ -3,7 +3,7 @@
         <h1>
             {{title}}
         </h1>
-        <Button 
+        <Button v-show="homePage"
         :text="showAddTask ? 'Close' : 'Add Task'" 
         :color="showAddTask ? 'red' : 'green'"
         @btn-click="$emit('toggle-add-task')"
@@ -14,7 +14,6 @@
 
 <script>
 import Button from './Button.vue'
-import Button1 from './Button.vue'
 
 export default {
     name: 'Header',
@@ -24,8 +23,16 @@ export default {
     },
     components: {
     Button,
-    Button1
-}
+    },
+    computed: {
+        homePage(){
+            if(this.$route.path === '/'){
+                return true
+            }else{
+                return false
+            }
+        }
+    }
 }
 </script>
 
